@@ -1,9 +1,9 @@
-package main
+package getPage
 
 import "fmt"
 
-func main () {
-	fmt.Printf("Started...\n")
+func PrintMessage() {
+	fmt.Printf("Printing message\n")
 
 
 }

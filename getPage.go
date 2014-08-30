@@ -1,9 +1,9 @@
 package getPage
 
-import "fmt"
+func PrintMessage() string {
+	return "Message from PrintMessage"
+}
 
-func PrintMessage() {
-	fmt.Printf("Printing message\n")
-
-
+func PrintEcho(s string) string {
+	return s
 }

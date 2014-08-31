@@ -15,3 +15,10 @@ func TestPrintMessageEcho (t *testing.T) {
 	}
 
 }
+
+func TestGetContent (t *testing.T) {
+	page := "http://www.example.com"
+	if x := GetContent(page); x == "" {
+		t.Errorf("Did not receive content from ", page)
+	}
+} 	

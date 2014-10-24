@@ -7,6 +7,7 @@ func TestPrintMessage (t *testing.T) {
 		t.Errorf("Expected text, got empty string")
 	}
 
+
 }
 
 func TestPrintMessageEcho (t *testing.T) {
@@ -21,4 +22,4 @@ func TestGetContent (t *testing.T) {
 	if x := GetContent(page); x == "" {
 		t.Errorf("Did not receive content from ", page)
 	}
-} 	
+}

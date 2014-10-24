@@ -28,4 +28,3 @@ func GetContent(u string) string {
 	return s
 }
 
-	

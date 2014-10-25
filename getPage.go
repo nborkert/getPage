@@ -1,6 +1,5 @@
 package getPage
-//comment
-//another comment
+
 import (
 	"io/ioutil"
 	"net/http"

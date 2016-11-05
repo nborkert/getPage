@@ -8,60 +8,24 @@ import (
 	"time"
 )
 
-func PrintMessage() string {
-	return "Message from PrintMessage"
-}
-
-func PrintEcho(s string) string {
-	return s
-}
-
-func GetHTTPCode(u string, num int, cresults chan<- int) {
-
-	client := &http.Client{}
-
-	req, err := http.NewRequest("GET", u, nil)
-	req.Header.Add("Authorization", "anJrDZQ9M5PYvmGuADqYAxbkdPxUkHsFvoj1EWLj4WFOKHO4TqUFOx8PmtuubuWO")
-
-	t := time.Now()
-	res, err := client.Do(req)
-	t2 := time.Now()
-
-	if err != nil {
-		//log.Fatal(err)
-		log.Println(err)
-	}
-	if err == nil {
-		ioutil.ReadAll(res.Body)
-		res.Body.Close()
-		fmt.Printf("%v,"+res.Status+",%v\n", num, t2.Sub(t))
-	}
-	
+func GetHTTPCode(u string, num int, cresults chan<- int, client *http.Client) {
+	GetHTTPCodeNoChannel(u, num, client)
 	cresults <- 1
 }
 
-
-func GetHTTPCodeNoChannel(u string, num int) {
-
-	client := &http.Client{}
-
-	req, err := http.NewRequest("GET", u, nil)
-	
+func GetHTTPCodeNoChannel(u string, num int, client *http.Client) {
 	t := time.Now()
-	res, err := client.Do(req)
+	res, err := client.Get(u)
 	t2 := time.Now()
 
 	if err != nil {
-		//log.Fatal(err)
-		log.Println(err)
+		fmt.Printf("%v,"+err.Error()+",%v\n", num, t2.Sub(t))
 	}
 	if err == nil {
-		ioutil.ReadAll(res.Body)
 		res.Body.Close()
 		fmt.Printf("%v,"+res.Status+",%v\n", num, t2.Sub(t))
-	}	
+	}
 }
-
 
 func GetContent(u string) string {
 
@@ -78,4 +42,3 @@ func GetContent(u string) string {
 	s := string(body[:])
 	return s
 }
-
